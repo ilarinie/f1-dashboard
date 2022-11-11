@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+
+  height: 100%;
+}
+
+.main {
+  display: grid;
+  max-height: 99vh;
+  padding: 2em;
+  height: 100%;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  gap: 2em;
+  // .chartArea {
+  //   grid-column: 1;
+  //   grid-row-start: 1;
+  //   grid-row-end: 3;
+  // }
+  .belowChart {
+    grid-row-start: 3;
+    grid-row-end: 5;
+    grid-column: 1;
+  }
+  .driverStandings {
+    grid-column: 2;
+    grid-row-start: 1;
+    grid-row-end: 5;
+  }
+  .constructorStandings {
+    grid-column: 3;
+    grid-row-start: 1;
+    grid-row-end: 5;
+  }
+}
