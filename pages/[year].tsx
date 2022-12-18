@@ -11,7 +11,6 @@ import styles from '../styles/Home.module.scss'
 import { getSeasonDetails } from '../services/seasonService'
 import { SeasonDetails } from '../components/SeasonDetails/SeasonDetails'
 
-
 const SeasonView: NextPage<PropsType> = (props) => {
   const [hoveredDriverId, setHoveredDriverId] = useState(null as null | string)
 
@@ -19,19 +18,17 @@ const SeasonView: NextPage<PropsType> = (props) => {
     <div className={styles.container}>
       <Head>
         <title>F1 Dashboard</title>
-        <meta name="description" content="F1 Dashboard woo" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name='description' content='F1 Dashboard woo' />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <main className={styles.main}>
-        <div className={styles.chartArea}>
-
-        </div>
+        <div className={styles.chartArea}></div>
         <div className={styles.belowChart}>
-          <SeasonDetails { ...{ ...props }} />
+          <SeasonDetails {...{ ...props }} />
         </div>
         <div className={styles.driverStandings}>
-          <DriverStandingsList constructors={props.constructors} standings={props.driverStandings} drivers={props.drivers} setHoveredDriverId={() => {}}/>
+          <DriverStandingsList constructors={props.constructors} standings={props.driverStandings} drivers={props.drivers} setHoveredDriverId={() => {}} />
         </div>
         <div className={styles.constructorStandings}>
           <ConstructorStandingsList standings={props.constructorStandings} constructors={props.constructors} />

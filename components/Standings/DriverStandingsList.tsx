@@ -37,13 +37,7 @@ export const DriverStandingsList = ({ standings, drivers, constructors }: Driver
         </thead>
         <tbody>
           {standings.map((value, index) => (
-            <ListItem
-              key={index}
-              standing={value}
-              leaderPoints={leaderPoints ?? 0}
-              driver={drivers.map[value.driverId]}
-              constructorMeta={constructors.map[drivers.map[value.driverId].constructorId]}
-            />
+            <ListItem key={index} standing={value} leaderPoints={leaderPoints ?? 0} driver={drivers.map[value.driverId]} constructorMeta={constructors.map[drivers.map[value.driverId].constructorId]} />
           ))}
         </tbody>
       </table>
@@ -51,17 +45,7 @@ export const DriverStandingsList = ({ standings, drivers, constructors }: Driver
   )
 }
 
-const ListItem = ({
-  standing,
-  leaderPoints,
-  driver,
-  constructorMeta,
-}: {
-  standing: DriverStanding
-  leaderPoints: number
-  driver: Driver
-  constructorMeta: ConstructorType
-}) => {
+const ListItem = ({ standing, leaderPoints, driver, constructorMeta }: { standing: DriverStanding; leaderPoints: number; driver: Driver; constructorMeta: ConstructorType }) => {
   if (!driver) {
     return null
   }
@@ -73,13 +57,7 @@ const ListItem = ({
           background: constructorColors[driver.constructorId] || 'white',
         }}
       >
-        <Image
-          height={50}
-          width={70}
-          objectFit={'contain'}
-          src={`/f1logos/${constructorLogos[constructorMeta.constructorRef]}`}
-          alt=''
-        />
+        <Image height={30} width={30} objectFit={'contain'} src={`/f1logos/${constructorLogos[constructorMeta.constructorRef]}`} alt='' />
       </td>
       <td className={styles.driverNameCell}>
         <a href={driver.url}>{`${driver.forename} ${driver.surname}`}</a>

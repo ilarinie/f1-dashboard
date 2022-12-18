@@ -45,7 +45,7 @@ export const SeasonDetails = ({ seasonDetails, constructors, drivers }: SeasonDe
               flexDirection: 'column',
             }}
           >
-            <Image height={100} width={200} src='/f1logos/f1.png' objectFit={'contain'} />
+            <Image alt='' height={100} width={200} src='/f1logos/f1.png' objectFit={'contain'} />
             <h3>
               Round {seasonDetails.currentRound} of {seasonDetails.totalRounds.length}
             </h3>

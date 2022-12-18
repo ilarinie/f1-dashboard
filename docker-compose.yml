@@ -1,9 +1,9 @@
 version: '3.8'
 services:
-  db:
+  mysql:
     image: mysql:5.7
     environment:
-      MYSQL_DATABASE: 'f1-database'
+      MYSQL_DATABASE: 'f1database'
       MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
@@ -13,5 +13,23 @@ services:
       - '3306'
     volumes:
       - my-db:/var/lib/mysql
+
+  f1dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    environment:
+      DATABASE_URL: 'mysql://root:password@mysql:3306/f1database?schema=public'
+      PORT: 3033
+    ports:
+      - '3033:3033'
+    expose:
+      - '3033'
+    depends_on:
+      - mysql
+    volumes:
+      - ./:/app
+      - /app/node_modules
+
 volumes:
   my-db:

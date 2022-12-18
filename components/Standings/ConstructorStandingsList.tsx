@@ -11,10 +11,7 @@ type ConstructorStandingsListProps = {
   standings: ConstructorStanding[]
   constructors: MappedType<ConstructorType>
 }
-export const ConstructorStandingsList = ({
-  standings,
-  constructors,
-}: ConstructorStandingsListProps) => {
+export const ConstructorStandingsList = ({ standings, constructors }: ConstructorStandingsListProps) => {
   const [leaderPoints, setLeaderPoints] = useState(0)
 
   useEffect(() => {
@@ -36,12 +33,7 @@ export const ConstructorStandingsList = ({
         </thead>
         <tbody>
           {standings.map((value, index) => (
-            <ListItem
-              key={index}
-              standing={value}
-              leaderPoints={leaderPoints ?? 0}
-              constructorMeta={constructors.map[value.constructorId]}
-            />
+            <ListItem key={index} standing={value} leaderPoints={leaderPoints ?? 0} constructorMeta={constructors.map[value.constructorId]} />
           ))}
         </tbody>
       </table>
@@ -49,15 +41,7 @@ export const ConstructorStandingsList = ({
   )
 }
 
-const ListItem = ({
-  standing,
-  leaderPoints,
-  constructorMeta,
-}: {
-  standing: ConstructorStanding
-  leaderPoints: number
-  constructorMeta: ConstructorType
-}) => {
+const ListItem = ({ standing, leaderPoints, constructorMeta }: { standing: ConstructorStanding; leaderPoints: number; constructorMeta: ConstructorType }) => {
   if (!constructorMeta) {
     return null
   }
@@ -69,12 +53,7 @@ const ListItem = ({
           background: constructorColors[constructorMeta.constructorId] || 'none',
         }}
       >
-        <Image
-          width={40}
-          height={40}
-          objectFit={'contain'}
-          src={`/f1logos/${constructorLogos[constructorMeta.constructorRef]}`}
-        />
+        <Image alt='' width={40} height={40} objectFit={'contain'} src={`/f1logos/${constructorLogos[constructorMeta.constructorRef]}`} />
       </td>
       <td className={styles.driverNameCell}>
         <a href={constructorMeta.url}>{`${constructorMeta.name}`}</a>

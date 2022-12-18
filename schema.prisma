@@ -1,12 +1,14 @@
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["native", "darwin", "debian-openssl-1.1.x"]
 }
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:password@localhost:3306/testdb?schema=public"
+  url      = env("DATABASE_URL")
 }
 
+// mysql://root:password@127.0.0.1:3306/f1database?schema=public"
 model circuits {
   circuitId  Int     @id @default(autoincrement())
   circuitRef String  @default("") @db.VarChar(255)
@@ -160,26 +162,26 @@ model races {
 }
 
 model results {
-  resultId        Int          @id @default(autoincrement())
-  race            races        @relation(fields: [raceId], references: [raceId])
-  raceId          Int          @default(0)
-  driver          drivers      @relation(fields: [driverId], references: [driverId])
-  driverId        Int          @default(0)
-  constructorId   Int          @default(0)
+  resultId        Int     @id @default(autoincrement())
+  race            races   @relation(fields: [raceId], references: [raceId])
+  raceId          Int     @default(0)
+  driver          drivers @relation(fields: [driverId], references: [driverId])
+  driverId        Int     @default(0)
+  constructorId   Int     @default(0)
   number          Int?
-  grid            Int          @default(0)
+  grid            Int     @default(0)
   position        Int?
-  positionText    String       @default("") @db.VarChar(255)
-  positionOrder   Int          @default(0)
-  points          Float        @default(0) @db.Float
-  laps            Int          @default(0)
-  time            String?      @db.VarChar(255)
+  positionText    String  @default("") @db.VarChar(255)
+  positionOrder   Int     @default(0)
+  points          Float   @default(0) @db.Float
+  laps            Int     @default(0)
+  time            String? @db.VarChar(255)
   milliseconds    Int?
   fastestLap      Int?
-  rank            Int?         @default(0)
-  fastestLapTime  String?      @db.VarChar(255)
-  fastestLapSpeed String?      @db.VarChar(255)
-  statusId        Int          @default(0)
+  rank            Int?    @default(0)
+  fastestLapTime  String? @db.VarChar(255)
+  fastestLapSpeed String? @db.VarChar(255)
+  statusId        Int     @default(0)
 }
 
 model seasons {

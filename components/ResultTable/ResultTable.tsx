@@ -29,9 +29,7 @@ export const ResultTable = ({ drivers, constructors, results }: ResultTableProps
           const driver = drivers.map[result.driverId]
           const constructorMeta = constructors.map[result.constructorId]
 
-          const positionDiff = result.position
-            ? result.grid - result.position
-            : result.grid - results.length
+          const positionDiff = result.position ? result.grid - result.position : result.grid - results.length
           return (
             <tr key={result.resultId}>
               <td
@@ -40,12 +38,7 @@ export const ResultTable = ({ drivers, constructors, results }: ResultTableProps
                   textAlign: 'center',
                 }}
               >
-                <Image
-                  objectFit={'contain'}
-                  height={20}
-                  width={20}
-                  src={`/f1logos/${constructorLogos[constructorMeta.constructorRef]}`}
-                />
+                <Image alt='' objectFit={'contain'} height={20} width={20} src={`/f1logos/${constructorLogos[constructorMeta.constructorRef]}`} />
               </td>
               <td>{`${driver.forename} ${driver.surname}`}</td>
               <td
@@ -73,7 +66,7 @@ export const ResultTable = ({ drivers, constructors, results }: ResultTableProps
                 {result.grid} (
                 <span
                   style={{
-                    color: positionDiff === 0 ? 'gray' : positionDiff < 0 ? 'red' : 'green',
+                    color: positionDiff === 0 ? 'gray' : positionDiff < 0 ? 'white' : 'white',
                   }}
                 >
                   {positionDiff === 0 ? '-' : positionDiff > 0 ? `+${positionDiff}` : positionDiff}
