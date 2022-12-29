@@ -12,6 +12,7 @@ services:
     expose:
       - '3306'
     volumes:
+      - ./fetch-db-dump.sh:/docker-entrypoint-initdb.d/fetch-db-dump.sh
       - my-db:/var/lib/mysql
 
   f1dashboard:

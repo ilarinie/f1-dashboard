@@ -5,10 +5,8 @@ WORKDIR /app
 RUN npm install -g npm@8.8.0
 
 COPY package.json package-lock.json ./
-RUN npm ci
+RUN npm install
 
-COPY . ./
+COPY dev-entrypoint.sh dev-entrypoint.sh
 
-RUN npx prisma generate
-
-CMD ["npm", "run", "dev"]
+CMD ["./dev-entrypoint.sh"]

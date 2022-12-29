@@ -40,7 +40,7 @@ export const ResultTable = ({ drivers, constructors, results }: ResultTableProps
               >
                 <Image alt='' objectFit={'contain'} height={20} width={20} src={`/f1logos/${constructorLogos[constructorMeta.constructorRef]}`} />
               </td>
-              <td>{`${driver.forename} ${driver.surname}`}</td>
+              <td>{`${driver.code}`}</td>
               <td
                 style={{
                   fontFamily: 'monospace',

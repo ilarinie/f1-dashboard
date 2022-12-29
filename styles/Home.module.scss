@@ -5,18 +5,15 @@
 }
 
 .main {
-  display: grid;
-  max-height: 99vh;
+
   padding: 2em;
-  height: 100%;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  width: 100%;
   gap: 2em;
-  // .chartArea {
-  //   grid-column: 1;
-  //   grid-row-start: 1;
-  //   grid-row-end: 3;
-  // }
+  .chartArea {
+
+    height: 600px;
+    flex-grow: 2;
+  }
   .belowChart {
     grid-row-start: 3;
     grid-row-end: 5;

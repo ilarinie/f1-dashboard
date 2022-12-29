@@ -10,6 +10,8 @@ import { makeSerializable } from '../utils/makeSerializable'
 import styles from '../styles/Home.module.scss'
 import { getSeasonDetails } from '../services/seasonService'
 import { SeasonDetails } from '../components/SeasonDetails/SeasonDetails'
+import { getDriverStandingChartData } from '../services/cumulativeStandingsService'
+import { DriverStandingChart } from '../components/DriverStandingChart/DriverStandingChart'
 
 const SeasonView: NextPage<PropsType> = (props) => {
   const [hoveredDriverId, setHoveredDriverId] = useState(null as null | string)
@@ -23,7 +25,9 @@ const SeasonView: NextPage<PropsType> = (props) => {
       </Head>
 
       <main className={styles.main}>
-        <div className={styles.chartArea}></div>
+        <div className={styles.chartArea}>
+          <DriverStandingChart drivers={props.drivers} standings={props.chartData} leaderPoints={props.leaderPoints} />
+        </div>
         <div className={styles.belowChart}>
           <SeasonDetails {...{ ...props }} />
         </div>
@@ -45,8 +49,11 @@ export const getServerSideProps = async (context: any) => {
   const driverStandings = await getDriverStandingsForSeason(year)
   const constructorStandings = await getConstructorStandingsForSeason(year)
   const seasonDetails = await getSeasonDetails(year)
+  const chartData = await getDriverStandingChartData(year)
+  const leaderPoints = driverStandings[0].points
+
   return {
-    props: { seasonDetails: makeSerializable(seasonDetails), drivers: makeSerializable(drivers), driverStandings: makeSerializable(driverStandings), constructorStandings: makeSerializable(constructorStandings), constructors: makeSerializable(constructors) },
+    props: { leaderPoints, chartData: chartData, seasonDetails: makeSerializable(seasonDetails), drivers: makeSerializable(drivers), driverStandings: makeSerializable(driverStandings), constructorStandings: makeSerializable(constructorStandings), constructors: makeSerializable(constructors) },
   }
 }
 

@@ -7,7 +7,7 @@ type NextRacePanelProps = {
 
 export const NextRacePanel = ({ race }: NextRacePanelProps) => {
   if (!race) {
-    return <div>-</div>
+    return <div style={{ textAlign: 'center' }}>The season has ended</div>
   }
 
   return (
